@@ -10,7 +10,7 @@ void printTableRow(const char* stack, const char* input, const char* action) {
     printf("%-30s $%-29s %-30s\n", stack, input, action);
 }
 
-int canBeReduced(char stack[], int *stack_top, struct ProductionRule rules[], int rule_count) {
+int canBeReduced(char stack[], int *stack_top, struct ProductionRule rules[], int rule_count, const char* input, int input_index) {
     char startingSymbol[20];
     sprintf(startingSymbol, "$%s", rules[0].left);
 
@@ -31,7 +31,7 @@ int canBeReduced(char stack[], int *stack_top, struct ProductionRule rules[], in
             *stack_top += left_len;
             stack[*stack_top] = '\0';
 
-            printTableRow(stack, "", action);
+            printTableRow(stack, &input[input_index], action);
             return 1;
         }
     }
@@ -57,7 +57,7 @@ int canBeParsed(char input[40], struct ProductionRule rules[], int rule_count) {
 
         printTableRow(stack, &input[i+1], "Shift");
 
-        while (canBeReduced(stack, &stack_top, rules, rule_count));
+        while (canBeReduced(stack, &stack_top, rules, rule_count, input, i + 1));
             
 
         if (strcmp(stack, startingSymbol) == 0 && i == strlen(input) - 1) {
@@ -100,10 +100,10 @@ int main() {
 
     return 0;
 }
-/*Output
+/*
 Enter the number of production rules: 4
 
-Enter the production rules (in the form 'left->right'): 
+Enter the production rules (in the form 'left->right'):
 S->(L)
 S->a
 L->L,S
@@ -112,23 +112,23 @@ L->S
 Enter the input to be parsed: (a,(a,a))
 
 Stack                          Input                          Action
------                          -----                          ------
+-----                          -----                          ------                        
 $(                             $a,(a,a))                      Shift
 $(a                            $,(a,a))                       Shift
-$(S                            $                              Reduce S -> a
-$(L                            $                              Reduce L -> S
+$(S                            $,(a,a))                       Reduce S -> a
+$(L                            $,(a,a))                       Reduce L -> S                 
 $(L,                           $(a,a))                        Shift
-$(L,(                          $a,a))                         Shift
+$(L,(                          $a,a))                         Shift                         
 $(L,(a                         $,a))                          Shift
-$(L,(S                         $                              Reduce S -> a 
-$(L,(L                         $                              Reduce L -> S
+$(L,(S                         $,a))                          Reduce S -> a                 
+$(L,(L                         $,a))                          Reduce L -> S
 $(L,(L,                        $a))                           Shift
 $(L,(L,a                       $))                            Shift
-$(L,(L,S                       $                              Reduce S -> a
-$(L,(L                         $                              Reduce L -> L,S
-$(L,(L)                        $)                             Shift
-$(L,S                          $                              Reduce S -> (L)
-$(L                            $                              Reduce L -> L,S
+$(L,(L,S                       $))                            Reduce S -> a
+$(L,(L                         $))                            Reduce L -> L,S
+$(L,(L)                        $)                             Shift                         
+$(L,S                          $)                             Reduce S -> (L)
+$(L                            $)                             Reduce L -> L,S
 $(L)                           $                              Shift
 $S                             $                              Reduce S -> (L)
 $S                             $                              Accept
