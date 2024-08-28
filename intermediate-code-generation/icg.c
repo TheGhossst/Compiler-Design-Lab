@@ -2,6 +2,16 @@
 #include <ctype.h>
 #include <string.h>
 
+struct ThreeAddressCode {
+    char op[5];
+    char arg1[10];
+    char arg2[10];
+    char result[10];
+};
+
+struct ThreeAddressCode tac[20];
+int tacCount = 0;
+
 int precedence(char op) {
     switch (op) {
         case '^':
@@ -36,6 +46,13 @@ void convertToThreeAddress(char* expression) {
             while (operatorTop != -1 && operatorStack[operatorTop] != '(') {
                 sprintf(temp, "t%d", tempCount++);
                 printf("%s = %s %c %s\n", temp, operandStack[operandTop - 1], operatorStack[operatorTop], operandStack[operandTop]);
+                
+                snprintf(tac[tacCount].op, sizeof(tac[tacCount].op), "%c", operatorStack[operatorTop]);
+                strcpy(tac[tacCount].arg1, operandStack[operandTop - 1]);
+                strcpy(tac[tacCount].arg2, operandStack[operandTop]);
+                strcpy(tac[tacCount].result, temp);
+                tacCount++;
+
                 strcpy(operandStack[--operandTop], temp);
                 operatorTop--;
             }
@@ -44,6 +61,13 @@ void convertToThreeAddress(char* expression) {
             while (operatorTop != -1 && precedence(operatorStack[operatorTop]) >= precedence(current)) {
                 sprintf(temp, "t%d", tempCount++);
                 printf("%s = %s %c %s\n", temp, operandStack[operandTop - 1], operatorStack[operatorTop], operandStack[operandTop]);
+                
+                snprintf(tac[tacCount].op, sizeof(tac[tacCount].op), "%c", operatorStack[operatorTop]);
+                strcpy(tac[tacCount].arg1, operandStack[operandTop - 1]);
+                strcpy(tac[tacCount].arg2, operandStack[operandTop]);
+                strcpy(tac[tacCount].result, temp);
+                tacCount++;
+
                 strcpy(operandStack[--operandTop], temp);
                 operatorTop--;
             }
@@ -54,8 +78,33 @@ void convertToThreeAddress(char* expression) {
     while (operatorTop != -1) {
         sprintf(temp, "t%d", tempCount++);
         printf("%s = %s %c %s\n", temp, operandStack[operandTop - 1], operatorStack[operatorTop], operandStack[operandTop]);
+
+        snprintf(tac[tacCount].op, sizeof(tac[tacCount].op), "%c", operatorStack[operatorTop]);
+        strcpy(tac[tacCount].arg1, operandStack[operandTop - 1]);
+        strcpy(tac[tacCount].arg2, operandStack[operandTop]);
+        strcpy(tac[tacCount].result, temp);
+        tacCount++;
+
         strcpy(operandStack[--operandTop], temp);
         operatorTop--;
+    }
+}
+
+void quadruple() {
+    printf("\nQuadruple Table:\n");
+    printf("Op\tArg1\tArg2\tResult\n");
+
+    for (int i = 0; i < tacCount; i++) {
+        printf("%s\t%s\t%s\t%s\n", tac[i].op, tac[i].arg1, tac[i].arg2, tac[i].result);
+    }
+}
+
+void triple() {
+    printf("\nTriple Table:\n");
+    printf("Index\tOp\tArg1\tArg2\n");
+
+    for (int i = 0; i < tacCount; i++) {
+        printf("%d\t%s\t%s\t%s\n", i, tac[i].op, tac[i].arg1, tac[i].arg2);
     }
 }
 
@@ -106,6 +155,9 @@ int main() {
 
     printf("\nThree Address Code:\n");
     convertToThreeAddress(expression);
+
+    quadruple();
+    triple();    
 
     return 0;
 }
