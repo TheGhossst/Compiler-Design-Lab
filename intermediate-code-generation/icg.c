@@ -161,3 +161,28 @@ int main() {
 
     return 0;
 }
+
+/*Output
+Enter the expression: (a+b)*(c-d)/e
+Postfix expression: ab+cd-*e/
+
+Three Address Code:
+t1 = a + b
+t2 = c - d
+t3 = t1 * t2
+t4 = t3 / e
+
+Quadruple Table:
+Op      Arg1    Arg2    Result
++       a       b       t1
+-       c       d       t2
+*       t1      t2      t3
+/       t3      e       t4
+
+Triple Table:
+Index   Op      Arg1    Arg2
+0       +       a       b
+1       -       c       d
+2       *       t1      t2
+3       /       t3      e
+*/
