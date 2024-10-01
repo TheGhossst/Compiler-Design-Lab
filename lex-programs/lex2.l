@@ -1,18 +1,15 @@
 %{
 	#include <stdio.h>
-	int lines = 0;
-	int words = 0;
-	int total = 0;
+	int vowels = 0;
+    int consonents = 0;
 %}
 %%
-[ \n\t]+ {
-	words++;
-	if(yytext[0]=='\n')
-	lines++;
+[aeiouAEIOU] {
+    vowels++;
 }
-[a-zA-Z0-9] {
-	   total++;
-	   }
+[a-zA-Z] {
+    consonents++;
+}
 %%
 
 int main(){
