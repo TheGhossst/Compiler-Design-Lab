@@ -1,3 +1,18 @@
 flex {filename}.l
 gcc lex.yy.c -o lexer -lfl
 ./lexer
+
+
+or 
+
+
+lex {filename}.l
+gcc lex.yy.c -o lexer -ll
+./lexer
+
+or 
+
+flex {filename}.l
+gcc lex.yy.c
+./a.out
+
