@@ -104,7 +104,17 @@ void triple() {
     printf("Index\tOp\tArg1\tArg2\n");
 
     for (int i = 0; i < tacCount; i++) {
-        printf("%d\t%s\t%s\t%s\n", i, tac[i].op, tac[i].arg1, tac[i].arg2);
+        printf("(%d)\t%s\t", i + 1, tac[i].op);
+        if (tac[i].arg1[0] == 't')
+            printf("(%c)\t", tac[i].arg1[1]);
+        else
+            printf(" %s\t", tac[i].arg1);
+
+        if (tac[i].arg2[0] == 't')
+            printf("(%c)\n", tac[i].arg2[1]);
+        else
+            printf(" %s\n", tac[i].arg2);
+
     }
 }
 
