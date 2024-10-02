@@ -17,9 +17,8 @@ int main(){
 	FILE *outfile = fopen("output.txt", "w");
 	yyin = infile;
 	yylex();
-	fprintf(outfile,"Words : %d\n", words);
-	fprintf(outfile,"Lines : %d\n", lines);
-	fprintf(outfile,"Total : %d\n", total+1);
+	fprintf(outfile,"Vowels : %d\n", vowels);
+	fprintf(outfile,"Consonents : %d\n", consonents);
 	fclose(infile);
 	fclose(outfile);
 	return 0;
