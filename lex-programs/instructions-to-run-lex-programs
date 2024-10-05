@@ -20,5 +20,6 @@ gcc lex.yy.c
 or 
 
 put file name in build.sh
-chmod +x build.sh
+chmod +x build.sh (you have to do this step only the first time running this)
+
 ./build.sh
