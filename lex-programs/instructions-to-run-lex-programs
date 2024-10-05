@@ -16,3 +16,9 @@ flex {filename}.l
 gcc lex.yy.c
 ./a.out
 
+
+or 
+
+put file name in build.sh
+chmod 777 build.sh
+./build.sh
