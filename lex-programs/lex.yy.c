@@ -753,13 +753,13 @@ do_action:	/* This label is used only to access EOF actions. */
 case 1:
 YY_RULE_SETUP
 #line 18 "lexusinglex.l"
-;  // Ignore spaces and tabs
+;
 	YY_BREAK
 case 2:
 /* rule 2 can match eol */
 YY_RULE_SETUP
 #line 19 "lexusinglex.l"
-;  // Ignore newlines
+;
 	YY_BREAK
 case 3:
 YY_RULE_SETUP
@@ -1845,12 +1845,12 @@ int main() {
     yyin = fopen("code.c", "r");
     yylex();
     printsymtab();
-    fclose(yyin);  // Close the file
+    fclose(yyin);
     return 0;
 }
 
 int yywrap() {
     printf("\nSuccessful\n");
-    return 1;  // Changed to return 1 to indicate end of input
+    return 1;
 }
 
