@@ -35,9 +35,25 @@ void yyerror(const char *s) {
 }
 
 int main(void) {
-    if (yyparse() == 0)
+    if (yyparse() == 0){
+        printf("Valid Expression\n");
         printf("Parsing succeeded.\n");
+    }
     else
         printf("Parsing failed.\n");
     return 0;
 }
+/*Output
+(2+3)*(4*3)/2
+Number: 2
+Number: 3
+Add
+Number: 4
+Number: 3
+Multiply
+Multiply
+Number: 2
+Divide
+Valid Expression
+Parsing succeeded.
+*/

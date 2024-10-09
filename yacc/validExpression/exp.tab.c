@@ -1297,8 +1297,10 @@ void yyerror(const char *s) {
 }
 
 int main(void) {
-    if (yyparse() == 0)
+    if (yyparse() == 0){
+        printf("Valid Expression\n");
         printf("Parsing succeeded.\n");
+    }
     else
         printf("Parsing failed.\n");
     return 0;
