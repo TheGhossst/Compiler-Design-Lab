@@ -2,7 +2,13 @@
 
 set -xe
 
+if [ $# -ne 1 ]; then
+  echo "Usage: $0 <filename.l>"
+  exit 1
+fi
 
-lex lex1.l
-gcc -o lexer lex.yy.c
+FILE="$1"
+
+lex "$FILE"
+gcc -o lexer lex.yy.c -lfl
 ./lexer
