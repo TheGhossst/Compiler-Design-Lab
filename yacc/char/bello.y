@@ -32,3 +32,11 @@ int main(void)
 	
 	return 0;
 }
+/*Output
+Input: #123
+Recognized successfully!
+
+Input: 1#123
+Error: syntax error
+Invalid input!
+*/

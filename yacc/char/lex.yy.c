@@ -724,7 +724,7 @@ YY_RULE_SETUP
 case 2:
 YY_RULE_SETUP
 #line 7 "bello.l"
-{ return 0; }
+{ return O; }
 	YY_BREAK
 case 3:
 /* rule 3 can match eol */

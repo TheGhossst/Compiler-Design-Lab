@@ -4,6 +4,6 @@
 
 %%
 [a-zA-Z0-9]	{ return L; }
-.			{ return 0; }
+.			{ return O; }
 \n		{ return 0; }
 %%
