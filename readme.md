@@ -22,29 +22,29 @@ This repository contains various lab experiments for the **Compiler Design** cou
 
 ### Lex Programs
 
-1. **Lex Program to Count Words and Lines**
+5. **Lex Program to Count Words and Lines**
    - **Description**: A Lex program (`lex1.l`) to count the number of words and lines in a given input.
    - **Files**: `lex-programs/lex1.l`
 
-2. **Lex Program to Count Vowels and Consonants**
+6. **Lex Program to Count Vowels and Consonants**
    - **Description**: A Lex program (`lex2.l`) to count the number of vowels and consonants in a given input.
    - **Files**: `lex-programs/lex2.l`
 
-3. **Lex Program to Convert 'abc' to 'ABC'**
+7. **Lex Program to Convert 'abc' to 'ABC'**
    - **Description**: A Lex program (`lex3.l`) to convert lowercase letters (`abc`) to uppercase letters (`ABC`).
    - **Files**: `lex-programs/lex3.l`
 
-4. **Lexical Analysis Using Lex**
+10. **Lexical Analysis Using Lex**
    - **Description**: This Lex program (`lexusinglex.l`) performs lexical analysis to identify and extract tokens from the input source code.
    - **Files**: `lex-programs/lexusinglex.l`
 
 ### YACC Programs
 
-1. YACC Program to Recognize Valid Arithmetic Expressions
+8. YACC Program to Recognize Valid Arithmetic Expressions
     - **Description**: This YACC program parses and recognizes valid arithmetic expressions. It performs syntax analysis to ensure that the input is a correctly structured arithmetic expression.
     - **Files**: `yacc/validExpression`
 
-2. YACC Program to Recognize a Pattern of Any Characters Followed by Letters and Digits
+9. YACC Program to Recognize a Pattern of Any Characters Followed by Letters and Digits
     - **Description**: This YACC program parses a pattern where the input consists of any characters followed by letters and digits. It demonstrates how to recognize and validate specific patterns using YACC.
     - **Files**: `yacc/char`
 
