@@ -134,7 +134,7 @@ char* convertToPostfix(char* expression) {
             stack[++top] = current;
         }
         else if (current == ')') {
-            while (top != -1 || stack[top] != '(') {
+            while (top != -1 && stack[top] != '(') {
                 postfix[k++] = stack[top--];
             }
             top--;
