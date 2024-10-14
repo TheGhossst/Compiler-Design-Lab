@@ -3,11 +3,14 @@
 %}
 
 %%
-abc     printf("ABC");
-.|\n   printf("%c", yytext[0]);
+[a-z]   printf("%c", yytext[0] - 32);
+\n return 0;
+.  printf("%c", yytext[0]);
+
 %%
 
 int main() {
+    printf("\nEnter an input: ");
     yylex();
     return 0;
 }
