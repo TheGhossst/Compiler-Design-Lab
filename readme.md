@@ -41,10 +41,10 @@ This repository contains various lab experiments for the **Compiler Design** cou
 ### YACC Programs
 
 1. YACC Program to Recognize Valid Arithmetic Expressions
-- **Description**: This YACC program parses and recognizes valid arithmetic expressions. It performs syntax analysis to ensure that the input is a correctly structured arithmetic expression.
-- **Files**: `yacc/validExpression`
+    - **Description**: This YACC program parses and recognizes valid arithmetic expressions. It performs syntax analysis to ensure that the input is a correctly structured arithmetic expression.
+    - **Files**: `yacc/validExpression`
 
 2. YACC Program to Recognize a Pattern of Any Characters Followed by Letters and Digits
-- **Description**: This YACC program parses a pattern where the input consists of any characters followed by letters and digits. It demonstrates how to recognize and validate specific patterns using YACC.
-- **Files**: `yacc/char`
+    - **Description**: This YACC program parses a pattern where the input consists of any characters followed by letters and digits. It demonstrates how to recognize and validate specific patterns using YACC.
+    - **Files**: `yacc/char`
 
