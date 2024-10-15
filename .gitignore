@@ -1,3 +1,5 @@
 lex.yy.c
 lexer
 parser
+lex
+lex.exe
