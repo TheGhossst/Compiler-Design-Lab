@@ -3,3 +3,5 @@ lexer
 parser
 lex
 lex.exe
+y.tab.c
+y.tab.h
