@@ -1,3 +1,5 @@
+/*Write a LEX program to count the number of comment lines in a C Program*/
+/*Also eliminate them and copy that program into a separate file*/
 %{
     #include <stdio.h>
     int single_count = 0;
@@ -6,11 +8,11 @@
 %}
 
 %%
-"//" {single_count++;}
-"/*" {multi_count++;}
+"//".*\n {single_count++;}
+"/*"[^*/]*"*/" { multi_count++; }
 \"[^\"]*\" {}
-\n {}
-. {}
+\n {printf("\n");}
+. {printf("%s", yytext);}
 %%
 
 int main(){
