@@ -8,8 +8,8 @@
       "args": [],
       "stopAtEntry": false,
       "externalConsole": true,
-      "cwd": ".",
-      "program": "build/Debug/outDebug",
+      "cwd": "c:/Users/Acer/Documents/bleh/s7/Compiler-Design-Lab/firstandfollow",
+      "program": "c:/Users/Acer/Documents/bleh/s7/Compiler-Design-Lab/firstandfollow/build/Debug/outDebug",
       "MIMode": "gdb",
       "miDebuggerPath": "gdb",
       "setupCommands": [
