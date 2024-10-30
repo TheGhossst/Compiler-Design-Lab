@@ -25,7 +25,7 @@ OPERATOR "+"|"-"|"*"|"/"|"<"|">"|"<="|">="|"=="
     tokenCount++;
 }
 
-[_a-zA-Z][_a-zA-Z0-9]* {
+[_a-zA-Z][a-zA-Z0-9]* {
     printf("<IDENTIFIER, %s>\n", yytext);
     strcpy(Tokens[tokenCount].token_name, yytext);
     strcpy(Tokens[tokenCount].token_type, "IDENTIFIER");

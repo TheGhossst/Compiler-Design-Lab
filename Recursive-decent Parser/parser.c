@@ -1,56 +1,41 @@
 #include <stdio.h>
-#include <stdlib.h>
-#include <ctype.h>
+#include <string.h>
 
-char *input;
+char input[100];
 int pos = 0;
+int backtrack = 0;
 
 int E();
 int T();
 int F();
 
-char peek() {
-    return input[pos];
-}
-
-void consume() {
-    pos++;
-}
-
-int digit() {
-    int result = 0;
-    while (isdigit(peek())) {
-        result = result * 10 + (peek() - '0');
-        consume();
-    }
-    return result;
-}
-
-// F -> (E) | digit
+// F -> ( E ) | i
 int F() {
-    if (peek() == '(') {
-        consume();  
+    if (input[pos] == '(') {
+        pos++;
         int result = E();
-        if (peek() == ')') {
-            consume();
+        if (input[pos] == ')') {
+            pos++;
             return result;
         } else {
-            printf("\nParsing Error\nError: Expected closing parenthesis\n");
-            exit(1);
+            printf("Error: missing closing parenthesis\n");
+            return 0;
         }
-    } else if (isdigit(peek())) {
-        return digit();
+    } else if (input[pos] == 'i') {
+        backtrack++;
+        pos++;
+        return 1;
     } else {
-        printf("\nParsing Error\nError: Unexpected character %c\n", peek());
-        exit(1);
+        printf("Error: invalid input\n");
+        return 0;
     }
 }
 
 // T -> F * T | F
 int T() {
     int result = F();
-    if (peek() == '*') {
-        consume(); 
+    while (input[pos] == '*') {
+        pos++;
         result *= F();
     }
     return result;
@@ -59,55 +44,26 @@ int T() {
 // E -> T + E | T
 int E() {
     int result = T();
-    if (peek() == '+') {
-        consume();
+    while (input[pos] == '+') {
+        pos++;
         result += T();
     }
     return result;
 }
 
 int main() {
-    printf("Recursive Decent Parser\n");
-    printf("----------------------------------\n");
-    printf("\nGrammer used in the parser:\n");
-    
-    printf("E -> T + E | T\nT -> F * T | F\nF -> (E) | digit\ndigit -> 0 | 1 | 2 | 3 | 4 | 5 | 6 | 7 | 8 | 9\n\n");
-    char expression[100];
-    printf("Enter an arithmetic expression: ");
-    fgets(expression, sizeof(expression), stdin);
-    input = expression;
-    
-    int result = E();
-    
-    if (peek() != '\n' && peek() != '\0') {
-        printf("\nParsing Error\nError: Unexpected character %c\n", peek());
+    printf("\nEnter the expression: ");
+    fgets(input, sizeof(input), stdin);
+    input[strcspn(input, "\n")] = '\0';
+
+     E();
+
+    if (input[pos] != '\0') {
+        printf("\nError: invalid expression\n");
     } else {
-        printf("\nParsed Successfully\n");
-        printf("Result: %d\n", result);
+        printf("\nValid");
+        printf("\nBacktrack = %d", backtrack);
     }
-    
+
     return 0;
 }
-/*Output
-Recursive Decent Parser
-----------------------------------
-Grammer used in the parser:
-E -> T + E | T
-T -> F * T | F
-F -> (E) | digit
-digit -> 0 | 1 | 2 | 3 | 4 | 5 | 6 | 7 | 8 | 9
-Enter an arithmetic expression: 2+3
-Parsed Successfully
-Result: 5
-
-Recursive Decent Parser
-----------------------------------
-Grammer used in the parser:
-E -> T + E | T
-T -> F * T | F
-F -> (E) | digit
-digit -> 0 | 1 | 2 | 3 | 4 | 5 | 6 | 7 | 8 | 9
-Enter an arithmetic expression: 2-3
-Parsing Error
-Error: Unexpected character -
-*/

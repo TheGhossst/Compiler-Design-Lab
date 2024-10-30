@@ -3,12 +3,11 @@
     #include <stdlib.h>
 
     void yyerror(const char *s);
-    int yylex(void);
+    int yylex();
 %}
 
 %token NUMBER
 %token INVALID
-
 %%
 
 Expr:
@@ -34,7 +33,7 @@ void yyerror(const char *s) {
     fprintf(stderr, "Error: %s\n", s);
 }
 
-int main(void) {
+int main() {
     if (yyparse() == 0){
         printf("Valid Expression\n");
         printf("Parsing succeeded.\n");

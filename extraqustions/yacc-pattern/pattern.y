@@ -11,7 +11,7 @@
 S   : E PLUS F       { printf("Valid string!\n"); }
     ;
 
-E   :
+E   : //epsilon
     | A E B          
     ;
 
